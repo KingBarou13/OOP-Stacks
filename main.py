@@ -32,6 +32,17 @@ class Stack:
     def size(self):
         return self.top + 1
 
+
+def mulBase(num, base):
+    s = Stack(10)
+    while num > 0:
+        s.push(num % base)
+        num //= base
+    converted = ""
+    while not s.is_empty():
+        converted += str(s.pop())
+    return converted
+
 size = int(input("Enter the size of the stack: "))
 stack = Stack(size)
 
@@ -41,7 +52,8 @@ while True:
     print("2. Pop")
     print("3. Peek")
     print("4. Check Size")
-    print("5. Exit")
+    print("5. Base Conversion")
+    print("6. Exit")
 
     choice = int(input("Enter your choice: "))
 
@@ -59,7 +71,13 @@ while True:
     elif choice == 4:
         print("Stack size:", stack.size())
     elif choice == 5:
+        num = int(input("Enter the number: "))
+        base = int(input("Enter the base: "))
+        result = mulBase(num, base)
+        print(f"{num} in base {base} is: {result}")
+    elif choice == 6:
         print("Exiting...")
         break
     else:
         print("Invalid choice, please try again.")
+
